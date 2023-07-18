@@ -1,29 +1,73 @@
+import React, { forwardRef, createRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { forwardRef,  createRef} from 'react';
+// Placeholder components (replace these with your actual component implementations)
+const Card_1 = () => <div>Card_1</div>;
+const ColorGrid = () => <div>ColorGrid</div>;
+const Red1 = () => <div>Red1</div>;
+const Red2 = () => <div>Red2</div>;
+const Green = () => <div>Green</div>;
+const Card_2 = () => <div>Card_2</div>;
+const Purple = () => <div>Purple</div>;
+const Yellow2 = () => <div>Yellow2</div>;
+const Pink2 = () => <div>Pink2</div>;
+const Dots2 = () => <div>Dots2</div>;
 
+const Home = () => {
+  const [name, setName] = useState('');
 
+  const refOne = createRef();
+  const refTwo = createRef();
 
+  const Card1 = forwardRef(function Card1(props, ref) {
+    return (
+      <Card_1 ref={refOne}>
+        <ColorGrid>
+          <Red1 />
+          <Red2 />
+          <Green />
+        </ColorGrid>
+      </Card_1>
+    );
+  });
 
-export default function Home(){
-    const Card1 = forwardRef((props, ref) => (
-    <Card_1 ref={refOne} >
-       <ColorGrid>
-        <Red1 />
-        <Red2 />
-        <Green />
-       </ColorGrid>
-    </Card_1>
-  ));
-    return(
-        <>
-            <Card1 ref={refOne} />
-        </>
-    )
-}
+  const card2Handler = () => {
+    // Define the logic for card2Handler here
+    console.log('Card 2 was clicked!');
+  };
 
+  const Card2 = forwardRef(function Card2(props, ref) {
+    return (
+      <Card_2 ref={refTwo} onClick={card2Handler}>
+        <Purple />
+        <Yellow2 />
+        <Pink2 />
+        <Dots2 />
+      </Card_2>
+    );
+  });
 
+  return (
+    <>
+      <Card1 ref={refOne} />
+      <FormContainer>
+        <Inputs>
+          <Label>Name</Label>
+          <Input
+            id="name"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {/* Other input fields go here */}
+        </Inputs>
+      </FormContainer>
+      <Card2 ref={refTwo} />
+    </>
+  );
+};
 
-export const FormContainer = styled.div`
+const FormContainer = styled.div`
   position: relative;
   width: 350px;
   height: 100%;
@@ -32,109 +76,22 @@ export const FormContainer = styled.div`
   background: #ecf0f3;
   box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
 `;
-export const Inputs = styled.div`
+
+const Inputs = styled.div`
   text-align: left;
   margin-top: 10px;
 `;
 
-export const Label = styled.h4`
+const Label = styled.h4`
   display: block;
   width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  margin-bottom: 4px;
-  margin-top: 12px;
-  font-family: 'Josefin Sans', sans-serif;
+  /* Other label styles go here */
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
   display: block;
   width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 45px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-  &:placeholder {
-    color: gray;
-  }
+  /* Other input styles go here */
 `;
 
-
-
-
-<FormContainer>
-                <Inputs>
-                  <Label>Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="Full Name"
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                  />
-                  <Label>Company / Business Name</Label>
-                  <Input
-                    id="brandname"
-                    placeholder="company / brand / name"
-                    onChange={(e) => {
-                      setBrand(e.target.value);
-                    }}
-                  />
-                  <Label>Phone Number</Label>
-                  <Input
-                    id="phonenumber"
-                    placeholder="070000000"
-                    onChange={(e) => {
-                      setPhoneNumber(e.target.value);
-                    }}
-                  />
-                  <Label>Email</Label>
-                  <Input
-                    id="email"
-                    placeholder="example@test.com"
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                  />
-                  <Label >Location</Label>
-                  <Input
-                    id="location"
-                    type="location"
-                    placeholder="location"
-                    onChange={(e) => {
-                      setLocation(e.target.value);
-                    }}
-                  />
-                  <Label >Website</Label>
-                  <Input
-                    id="website"
-                    type="website"
-                    placeholder="website"
-                    onChange={(e) => {
-                      setWebsite(e.target.value);
-                    }}
-                  />
-               
-                </Inputs>
-              </FormContainer>
-
-
-
-
-  const Card2 = forwardRef((props, ref) => (
-    <Card_2 ref={refTwo} onClick={card2Handler} >
-      <Purple />
-      <Yellow2 />
-      <Pink2 />
-      <Dots2 />
-    </Card_2>
-  ));
+export default Home;
